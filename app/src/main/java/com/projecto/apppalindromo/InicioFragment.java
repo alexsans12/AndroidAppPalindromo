@@ -1,25 +1,37 @@
 package com.projecto.apppalindromo;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.SurfaceControl;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.projecto.apppalindromo.databinding.FragmentInicioBinding;
-import com.projecto.apppalindromo.databinding.FragmentRespuestaBinding;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 public class InicioFragment extends Fragment {
 
     private FragmentInicioBinding binding;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // This callback will only be called when MyFragment is at least Started.
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                getActivity().finish();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+    }
 
     @Override
     public View onCreateView(
@@ -27,7 +39,6 @@ public class InicioFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentInicioBinding.inflate(inflater, container, false);
-
 
         return binding.getRoot();
 
