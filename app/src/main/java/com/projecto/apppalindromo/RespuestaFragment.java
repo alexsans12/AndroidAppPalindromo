@@ -1,10 +1,13 @@
 package com.projecto.apppalindromo;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -33,6 +36,7 @@ public class RespuestaFragment extends Fragment {
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,10 +47,14 @@ public class RespuestaFragment extends Fragment {
             boolean esPalindromo = getArguments().getBoolean("esPalindromo");
             String texto = getArguments().getString("text");
 
-            if (esPalindromo)
+            if (esPalindromo) {
                 binding.textView.setText(texto + " es un palindromo!");
-            else
+                binding.imageView.setImageDrawable(binding.getRoot().getContext().getDrawable(R.drawable.ic_found));
+            }
+            else {
                 binding.textView.setText(texto + " no es un palindromo.");
+                binding.imageView.setImageDrawable(binding.getRoot().getContext().getDrawable(R.drawable.ic_not_found));
+            }
         } catch(Exception e) {
             System.out.println(e);
         }

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.projecto.apppalindromo.InicioFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/inicio_fragment_label"
         tools:layout="@layout/fragment_inicio">
 
         <action

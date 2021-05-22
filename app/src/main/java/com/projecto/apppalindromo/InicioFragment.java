@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -51,15 +52,20 @@ public class InicioFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                String texto = binding.editTextInicio.getText().toString();
-                boolean esPalindromo = PalindromoLibro(texto);
-                Bundle bundle = new Bundle();
+                String texto = binding.editTextInicio.getText().toString().replaceAll("(\\r|\\n)", " ");
+                if(texto.length() > 0) {
+                    boolean esPalindromo = PalindromoLibro(texto);
+                    Bundle bundle = new Bundle();
 
-                bundle.putBoolean("esPalindromo", esPalindromo);
-                bundle.putString("text", texto);
+                    bundle.putBoolean("esPalindromo", esPalindromo);
+                    bundle.putString("text", texto);
 
-                NavHostFragment.findNavController(InicioFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment, bundle);
+                    NavHostFragment.findNavController(InicioFragment.this)
+                            .navigate(R.id.action_FirstFragment_to_SecondFragment, bundle);
+                } else {
+                    binding.editTextLayout.setError("Ingresa una palabra");
+                    Toast.makeText(binding.getRoot().getContext(), "Intenta ingresando una palabra o frase", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
