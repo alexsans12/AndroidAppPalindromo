@@ -10,4 +10,8 @@
     <string name="hello_second_fragment">Hello second fragment</string>
     <string name="fragment_inicio_et_hint">Frase o Palabra</string>
     <string name="fragment_inicio_text_view">Escribe una palabra o frase</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="umg_logo">UMG Logo</string>
+    <string name="student_1_fragment">Nombre y Apellido - 5090-xx-xxxxx</string>
+    <string name="group_fragment_about">Aplicación creada por:</string>
 </resources>
